@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">OverlayImageView</string>
+    <string name="normal_imageview">Normal ImageView</string>
+    <string name="overlay_image_view">Overlay Image View</string>
 </resources>
