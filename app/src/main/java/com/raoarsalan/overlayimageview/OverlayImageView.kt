@@ -23,7 +23,7 @@ class OverlayImageView(context: Context, attrs: AttributeSet) : androidx.appcomp
      */
     private var mOverlayColor:Int
 
-
+    private var mDefaultColor:Int
 
     init {
         context.theme.obtainStyledAttributes(
@@ -33,7 +33,9 @@ class OverlayImageView(context: Context, attrs: AttributeSet) : androidx.appcomp
         ).apply {
 
             try {
-                mOverlayColor = getColor(R.styleable.OverlayImageView_overlayColor,-1)
+                mOverlayColor = getColor(R.styleable.OverlayImageView_overlayColor,
+                R.styleable.OverlayImageView_defaultColor)
+                mDefaultColor = getColor(R.styleable.OverlayImageView_defaultColor,-1)
 
             } finally {
                 recycle()
@@ -49,13 +51,13 @@ class OverlayImageView(context: Context, attrs: AttributeSet) : androidx.appcomp
      * by default it's  draw image view without overlay color
      * @see canvas is responsible drawing the image view according to overlay color
      * @see mOverlayColor
-     *
+     * @see mDefaultColor is responsible for drawing the image view without overlay color.
      */
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
 
-        if (mOverlayColor != -1) {
+        if (mOverlayColor != mDefaultColor) {
             canvas?.drawColor(mOverlayColor)
         }
     }
@@ -73,9 +75,16 @@ class OverlayImageView(context: Context, attrs: AttributeSet) : androidx.appcomp
     }
 
     /**
-     * @return The overlay color used for draw the color into image view
+     * @return The overlay color is used for draw the color into image view
      */
     fun getOverlayColor():Int{
         return mOverlayColor
+    }
+
+    /**
+     * @return Default color is used for draw the image view without overlay color.
+     */
+    fun getDefaultColor():Int{
+        return mDefaultColor
     }
 }

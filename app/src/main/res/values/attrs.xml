@@ -4,5 +4,8 @@
 
     <declare-styleable name="OverlayImageView">
       <attr name="overlayColor" format="color"/>
+        <attr name="defaultColor" format="enum">
+            <enum name="Default" value="-1"/>
+        </attr>
     </declare-styleable>
 </resources>
